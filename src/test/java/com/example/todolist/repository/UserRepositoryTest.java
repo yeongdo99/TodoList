@@ -1,6 +1,5 @@
 package com.example.todolist.repository;
 
-import com.example.todolist.user.dto.SignupRequestDto;
 import com.example.todolist.user.entity.User;
 import com.example.todolist.user.repository.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -20,7 +19,7 @@ public class UserRepositoryTest {
     @Test
     void findByUsernameTest() {
         // given
-        User user = new User(new SignupRequestDto("test user", "password"));
+        User user = new User("test user", "password");
         userRepository.save(user);
 
         // when
