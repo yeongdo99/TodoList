@@ -2,12 +2,14 @@ package com.example.todolist.controller;
 
 import com.example.todolist.config.WebSecurityConfig;
 import com.example.todolist.service.TodoService;
+import com.example.todolist.test.MockSecurityFilter;
+import com.example.todolist.test.TestSetting;
 import com.example.todolist.todo.controller.TodoController;
 import com.example.todolist.todo.dto.TodoRequestDto;
 import com.example.todolist.todo.dto.TodoResponseDto;
 import com.example.todolist.todo.entity.Todo;
-import com.example.todolist.user.dto.SignupRequestDto;
 import com.example.todolist.user.entity.User;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -16,10 +18,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.nio.charset.StandardCharsets;
 
 import static org.mockito.BDDMockito.given;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -34,13 +38,23 @@ public class TodoControllerTest extends TestSetting {
     @MockBean
     private TodoService todoService;
 
+    @BeforeEach
+    public void setup() {
+        this.mockUserSetup();
+
+        mvc = MockMvcBuilders.webAppContextSetup(context)
+                .apply(springSecurity(new MockSecurityFilter()))
+                .alwaysDo(print())
+                .build();
+    }
 
     @Test
-    @DisplayName("todo 작성")
+    @DisplayName("할 일 작성")
     void createTodo() throws Exception {
         // given
         TodoRequestDto requestDto = new TodoRequestDto("제목테스트", "내용테스트");
         String todoInfo = objectMapper.writeValueAsString(requestDto);
+
 
         // when - then
         mvc.perform(post("/api/todo")
@@ -54,12 +68,12 @@ public class TodoControllerTest extends TestSetting {
     }
 
     @Test
-    @DisplayName("todo 조회")
+    @DisplayName("할 일 조회")
     void getTodoTest() throws Exception {
         // given
         Long todoId = 1L;
         TodoRequestDto requestDto = new TodoRequestDto("제목테스트", "내용테스트");
-        User user = new User(new SignupRequestDto("test user", "password"));
+        User user = new User("test user", "password");
         Todo todo = new Todo(requestDto, user);
         TodoResponseDto responseDto = new TodoResponseDto(todo);
 
@@ -68,14 +82,14 @@ public class TodoControllerTest extends TestSetting {
         // when - then
         mvc.perform(get("/api/todo/{todoId}", todoId).principal(mockPrincipal))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.titlge").value(responseDto.getTitle()))
+                .andExpect(jsonPath("$.title").value(responseDto.getTitle()))
                 .andExpect(jsonPath("$.content").value(responseDto.getContent()))
                 .andExpect(jsonPath("$.username").value(responseDto.getUsername()))
                 .andDo(print());
     }
 
     @Test
-    @DisplayName("todo 수정")
+    @DisplayName("할 일 수정")
     void updateTodoTest() throws Exception {
         // given
         Long todoId = 1L;
@@ -89,12 +103,11 @@ public class TodoControllerTest extends TestSetting {
                         .accept(new MediaType(MediaType.APPLICATION_JSON, StandardCharsets.UTF_8))
                         .principal(mockPrincipal)
                 )
-                .andExpect(status().isOk())
-                .andDo(print());
+                .andExpect(status().isOk());
     }
 
     @Test
-    @DisplayName("todo 삭제")
+    @DisplayName("할 일 삭제")
     void deleteTodoTest() throws Exception {
         // given
         Long todoId = 1L;
