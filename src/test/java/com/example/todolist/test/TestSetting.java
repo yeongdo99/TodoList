@@ -1,7 +1,6 @@
-package com.example.todolist.controller;
+package com.example.todolist.test;
 
 import com.example.todolist.security.UserDetailsImpl;
-import com.example.todolist.user.dto.SignupRequestDto;
 import com.example.todolist.user.entity.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +17,7 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @WebMvcTest
-public class TestSetting {
+public class TestSetting implements CommonTest {
 
     protected MockMvc mvc;
 
@@ -38,11 +37,11 @@ public class TestSetting {
                 .build();
     }
 
-    protected  void mockUserSetup() {
-        // Mock 테스트 유져 생성
-        String username = "yeongdo11";
-        String password = "zxc123@";
-        User testUser = new User(new SignupRequestDto(username, password));
+    protected void mockUserSetup() {
+        // Mock 테스트 유저 생성
+        String username = "username";
+        String password = "password";
+        User testUser = new User(username, password);
         UserDetailsImpl testUserDetails = new UserDetailsImpl(testUser);
         mockPrincipal = new UsernamePasswordAuthenticationToken(testUserDetails, "", testUserDetails.getAuthorities());
     }
