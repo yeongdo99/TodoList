@@ -75,25 +75,34 @@ public class CommentServiceTest {
     void updateCommentTest() {
         // given
         Long commentId = 1L;
-        CommentRequestDto requestDto = new CommentRequestDto("댓글 수정");
-        given(commentRepository.save(any(Comment.class))).willReturn(comment);
+        User user = new User("username", "password");
+        Comment comment1 = new Comment(commentRequestDto, user, todo);
+        given(commentRepository.findById(commentId)).willReturn(Optional.of(comment1));
+
+        CommentService commentService1 = new CommentService(commentRepository, todoRepository);
 
         // when
-        CommentResponseDto responseDto = commentService.updateComment(1L, requestDto, user);
+        CommentResponseDto commentResponseDto = commentService1.updateComment(commentId, commentRequestDto, user);
 
-        assertEquals("댓글 수정", responseDto.getContent());
+        // then
+        assertEquals("댓글 테스트", commentResponseDto.getContent());
     }
 
     @Test
     @DisplayName("댓글 삭제 성공")
     void deleteCommentTest() {
         // given
-        Long CommentId = 1L;
+        Long commentId = 1L;
+        User user = new User("username", "password");
+        Todo todo = new Todo(requestDto, user);
+        Comment comment1 = new Comment(commentRequestDto, user, todo);
 
-        given(commentRepository.save(any(Comment.class))).willReturn(comment);
+        given(commentRepository.findById(commentId)).willReturn(Optional.of(comment1));
+
+        CommentService commentService1 = new CommentService(commentRepository, todoRepository);
 
         // when
-        commentService.deleteComment(1L, user);
+        commentService1.deleteComment(commentId, user);
 
         // then
         verify(commentRepository).delete(any(Comment.class));
