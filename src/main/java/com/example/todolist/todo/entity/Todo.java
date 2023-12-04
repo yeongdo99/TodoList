@@ -4,6 +4,7 @@ import com.example.todolist.comment.entity.Comment;
 import com.example.todolist.todo.dto.TodoRequestDto;
 import com.example.todolist.user.entity.User;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -37,6 +38,13 @@ public class Todo extends Timestamped {
     @OneToMany(mappedBy = "todo")
     private List<Comment> comments = new ArrayList<>();
 
+
+    @Builder
+    public Todo(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
     public Todo(TodoRequestDto requestDto, User user) {
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
@@ -49,7 +57,7 @@ public class Todo extends Timestamped {
         this.content = requestDto.getContent();
     }
 
-    public void isCompleted(Boolean isCompleted) {
+    public void isCompleted(boolean isCompleted) {
         this.isCompleted = isCompleted;
     }
 

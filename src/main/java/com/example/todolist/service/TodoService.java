@@ -40,9 +40,6 @@ public class TodoService {
         Todo todo = todoRepository.findById(id).orElseThrow(()
                 -> new NullPointerException("존재하지 않습니다."));
 
-        System.out.println(todo.getUser().getUsername());
-        System.out.println(user.getUsername());
-
         if (!todo.getUser().getUsername().equals(user.getUsername())) {
             throw new IllegalStateException("작성자만 수정할 수 있습니다.");
         }

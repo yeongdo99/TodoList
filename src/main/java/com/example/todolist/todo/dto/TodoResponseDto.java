@@ -1,14 +1,13 @@
 package com.example.todolist.todo.dto;
 
 import com.example.todolist.todo.entity.Todo;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Getter
+@Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class TodoResponseDto {
@@ -19,6 +18,7 @@ public class TodoResponseDto {
     private Boolean isCompleted;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
+
 
     public TodoResponseDto(Todo todo) {
         this.id = todo.getId();
