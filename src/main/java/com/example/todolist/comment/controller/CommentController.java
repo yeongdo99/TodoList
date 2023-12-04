@@ -14,25 +14,26 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/comment")
+@RequestMapping("/api/todo/{todoId}")
 public class CommentController {
 
     private final CommentService commentService;
 
-    @PostMapping("/{todoId}")
+    @PostMapping("/comments")
     public CommentResponseDto createComment(@PathVariable Long todoId, @RequestBody @Valid CommentRequestDto requestDto, BindingResult bindingResult, @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
         return commentService.createComment(todoId, requestDto, userDetails.getUser());
     }
 
-    @PutMapping("/{commentId}")
+    @PutMapping("/comments/{commentId}")
     public CommentResponseDto updateComment(@PathVariable Long commentId, @RequestBody @Valid CommentRequestDto requestDto, BindingResult bindingResult, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return commentService.updateComment(commentId, requestDto, userDetails.getUser());
     }
 
-    @DeleteMapping("/{commentId}")
+    @DeleteMapping("/comments/{commentId}")
     public ResponseEntity<String> deleteComment(@PathVariable Long commentId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         commentService.deleteComment(commentId, userDetails.getUser());
         return ResponseEntity.ok("댓글이 삭제되었습니다.");
     }
+    //
 }

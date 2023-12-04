@@ -24,7 +24,6 @@ public class CommentService {
                 -> new NullPointerException("게시글이 존재하지 않습니다."));
 
         Comment comment = commentRepository.save(new Comment(requestDto, user, todo));
-
         return new CommentResponseDto(comment);
     }
 
@@ -37,7 +36,6 @@ public class CommentService {
         }
 
         comment.update(requestDto);
-
         return new CommentResponseDto(comment);
     }
 
@@ -51,7 +49,6 @@ public class CommentService {
         }
 
         commentRepository.delete(comment);
-
         return ResponseEntity.status(HttpStatus.OK).body("댓글 삭제 성공");
     }
 }
