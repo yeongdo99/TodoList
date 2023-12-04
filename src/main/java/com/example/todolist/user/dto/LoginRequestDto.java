@@ -1,10 +1,12 @@
 package com.example.todolist.user.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
-@Setter
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class LoginRequestDto {
     private String username;
     private String password;

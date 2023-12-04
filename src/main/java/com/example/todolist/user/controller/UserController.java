@@ -1,8 +1,11 @@
 package com.example.todolist.user.controller;
 
+import com.example.todolist.jwt.JwtUtil;
 import com.example.todolist.user.dto.CommonResponseDto;
+import com.example.todolist.user.dto.LoginRequestDto;
 import com.example.todolist.user.dto.SignupRequestDto;
 import com.example.todolist.user.service.UserService;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +27,7 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+    private final JwtUtil jwtUtil;
 
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@Valid @RequestBody SignupRequestDto requestDto, BindingResult bindingResult){
@@ -42,5 +46,18 @@ public class UserController {
         } catch (IllegalArgumentException ex){
             return ResponseEntity.badRequest().body(new CommonResponseDto(ex.getMessage(), HttpStatus.BAD_REQUEST.value()));
         }
+    }
+
+    @PostMapping("/user/login")
+    public ResponseEntity<CommonResponseDto> login(@Valid @RequestBody LoginRequestDto userRequestDto, HttpServletResponse response) {
+        try {
+            userService.login(userRequestDto);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(new CommonResponseDto(e.getMessage(), HttpStatus.BAD_REQUEST.value()));
+        }
+
+        response.setHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(userRequestDto.getUsername()));
+
+        return ResponseEntity.ok().body(new CommonResponseDto("로그인 성공", HttpStatus.OK.value()));
     }
 }
