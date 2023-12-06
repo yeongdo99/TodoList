@@ -1,7 +1,7 @@
 package com.example.todolist.todo.controller;
 
 import com.example.todolist.security.UserDetailsImpl;
-import com.example.todolist.service.TodoService;
+import com.example.todolist.todo.service.TodoService;
 import com.example.todolist.todo.dto.TodoRequestDto;
 import com.example.todolist.todo.dto.TodoResponseDto;
 import jakarta.validation.Valid;

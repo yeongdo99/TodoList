@@ -1,4 +1,4 @@
-package com.example.todolist.service;
+package com.example.todolist.todo.service;
 
 import com.example.todolist.todo.dto.TodoRequestDto;
 import com.example.todolist.todo.dto.TodoResponseDto;
