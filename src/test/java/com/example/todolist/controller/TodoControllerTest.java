@@ -1,7 +1,7 @@
 package com.example.todolist.controller;
 
 import com.example.todolist.config.WebSecurityConfig;
-import com.example.todolist.service.TodoService;
+import com.example.todolist.todo.service.TodoService;
 import com.example.todolist.test.MockSecurityFilter;
 import com.example.todolist.test.TestSetting;
 import com.example.todolist.todo.controller.TodoController;

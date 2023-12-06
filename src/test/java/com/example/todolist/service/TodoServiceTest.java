@@ -4,6 +4,7 @@ import com.example.todolist.todo.dto.TodoRequestDto;
 import com.example.todolist.todo.dto.TodoResponseDto;
 import com.example.todolist.todo.entity.Todo;
 import com.example.todolist.todo.repository.TodoRepository;
+import com.example.todolist.todo.service.TodoService;
 import com.example.todolist.user.entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
