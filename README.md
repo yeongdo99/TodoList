@@ -64,15 +64,17 @@
     - 로그인 시, 전달된 username과 password 중 맞지 않는 정보가 있다면 "회원을 찾을 수 없습니다."라는 에러메시지와 statusCode: 400을 Client에 반환하기
 
 <aside>
-** 💡 API 명세서 
+** <h3>💡 API 명세서 </h3>
   <br>
 https://documenter.getpostman.com/view/30873326/2s9YeLX8si
 </aside>
+<br>
+<br>
 
 <aside>
-⚠️ **ERD**
+ <h3>💡 ERD 다이어그램 </h3>
   <br>
-https://documenter.getpostman.com/view/30873326/2s9YeLX8si
+<img width="623" alt="Todo ERD" src="https://github.com/yeongdo99/TodoList/assets/146189745/d0331fca-2bbe-417a-83b3-56ff64161277">
 </aside>
 
 
