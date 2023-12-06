@@ -2,6 +2,8 @@
 <h2>"회원가입, 로그인 기능이 있는 투두앱 백엔드 서버 만들기"</h2>
 
 <h2>"Controller, Service, Repository, Entity, DTO 레이어에 맞는 단위 테스트 작성하기"</h2>
+<br>
+<br>
 
 - [ ]  **🆕 회원 가입 API**
     - username, password를 Client에서 전달받기
