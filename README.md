@@ -5,6 +5,9 @@
 <br>
 <br>
 
+
+
+
 - [ ]  **🆕 회원 가입 API**
     - username, password를 Client에서 전달받기
     - username은  `최소 4자 이상, 10자 이하이며 알파벳 소문자(a~z), 숫자(0~9)`로 구성되어야 한다.
