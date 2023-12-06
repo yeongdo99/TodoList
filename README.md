@@ -1,5 +1,6 @@
 <h1># TodoList</h1>
 <h2>"회원가입, 로그인 기능이 있는 투두앱 백엔드 서버 만들기"</h2>
+<h2>"Controller, Service, Repository, Entity, DTO 레이어에 맞는 단위 테스트 작성하기"</h2>
 
 - [ ]  **🆕 회원 가입 API**
     - username, password를 Client에서 전달받기
@@ -62,9 +63,26 @@
     - 토큰이 있고, 유효한 토큰이지만 해당 사용자가 작성한 게시글/댓글이 아닌 경우에는 “작성자만 삭제/수정할 수 있습니다.”라는 에러메시지와 statusCode: 400을 Client에 반환하기
     - DB에 이미 존재하는 username으로 회원가입을 요청한 경우 "중복된 username 입니다." 라는 에러메시지와 statusCode: 400을 Client에 반환하기
     - 로그인 시, 전달된 username과 password 중 맞지 않는 정보가 있다면 "회원을 찾을 수 없습니다."라는 에러메시지와 statusCode: 400을 Client에 반환하기
+     
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+- [ ]  **🆕 DTO, Entity Test 추가하기**
+    - `@Test` 를 사용해서 DTO 와 Entity Test 를 추가합니다.
+    - User, Todo, Comment, DTO 에 존재하는 메서드들에 대해서 테스트를 추가합니다.
+- [ ]  **🆕 Controller Test 추가하기**
+    - `@WebMvcTest` 를 사용하여 Controller Test 를 추가합니다.
+    - Todo, Comment Controller 에 대해서 테스트를 추가합니다.
+- [ ]  **🆕 Service Test 추가하기**
+    - `@ExtendWith` 를 사용하여 Service Test 를 추가합니다.
+    - User, UserDetails, Todo, Comment Service 에 대해서 테스트를 추가합니다.
+- [ ]  **🆕 Repository Test 추가하기**
+    - `@DataJpaTest` 를 사용하여 Repository Test 를 추가합니다.
+    - User, Todo, Comment Repository 에 대해서 테스트를 추가합니다.
+
 
 <aside>
-** <h3>💡 API 명세서 </h3>
+ <h3>💡 API 명세서 </h3>
   <br>
 https://documenter.getpostman.com/view/30873326/2s9YeLX8si
 </aside>
