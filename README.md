@@ -87,9 +87,12 @@
     - User, Todo, Comment Repository 에 대해서 테스트를 추가합니다.
 
 
+<br>
+<br>
+
 <aside>
  <h3>💡 API 명세서 </h3>
-  <br>
+  
 https://documenter.getpostman.com/view/30873326/2s9YeLX8si
 </aside>
 <br>
@@ -97,7 +100,7 @@ https://documenter.getpostman.com/view/30873326/2s9YeLX8si
 
 <aside>
  <h3>💡 ERD 다이어그램 </h3>
-  <br>
+  
 <img width="623" alt="Todo ERD" src="https://github.com/yeongdo99/TodoList/assets/146189745/d0331fca-2bbe-417a-83b3-56ff64161277">
 </aside>
 
